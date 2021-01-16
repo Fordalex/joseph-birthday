@@ -1,17 +1,14 @@
 // settings
 
 function restart() {
+
     setTimeout(function() {
         location.reload();
     }, 1500)
 }
 
-$(document).on('click', '#welcome-close', function() {
-    $('#welcome-message').remove();
-    sessionStorage.setItem('welcomeMessageRead', 'read');
-})
-
 var welcomeMessage = sessionStorage.getItem('welcomeMessageRead');
+var usersAttempts = sessionStorage.getItem('attempts');
 
 if (welcomeMessage != 'read') {
     $('#puzzle-container').append(`
@@ -22,9 +19,14 @@ if (welcomeMessage != 'read') {
     `)
 }
 
+$(document).on('click', '#welcome-close', function() {
+    $('#welcome-message').remove();
+    sessionStorage.setItem('welcomeMessageRead', 'read');
+})
+
 // first
 
-var firstButton = 30;
+var firstButton = 9;
 
 $('#first-button').on('click', function() {
     firstButton--;
@@ -107,11 +109,140 @@ $(document).on('click', '#navy', function() {
         <p id="well-done">Your Smarter Than you look.</p>
     `);
     setTimeout(function() {
+        $('#well-done').remove();
         startThirdPuzzle();
     }, 2500)
 })
 
 // Third puzzle
 function startThirdPuzzle() {
-    $('#well-done').remove();
+    $('#puzzle-container').append(`
+        <div>
+            <div>
+                <p>Change the background colour to view the instructions, select the correct button to continue.</p>
+                <ol id="instructions-list">
+                    <li>${colorLetters("Your number isn't 122 but it's half that")}</li>
+                    <li>${colorLetters("Add 9 to your number")}</li>
+                    <li>${colorLetters("Divide your number by the yellow number in the grid")}</li>
+                    <li>${colorLetters("Times your number by the red number in the grid")}</li>
+                    <li>${colorLetters("Add 5 to your number then press the number 72")}</li>
+                </ol>
+            </div>
+            <hr>
+            <h6 class="text-center">Change Background Colour</h6>
+            <div class="d-flex justify-content-center mb-3">
+                <button onclick="changeInstructionsBackground('red')">Red</button>
+                <button onclick="changeInstructionsBackground('blue')" class="mx-3">Blue</button>
+                <button onclick="changeInstructionsBackground('green')">Green</button>
+            </div>
+            <hr>
+            <div id="number-button-container">
+
+            </div>
+        </div>
+    `);
+    for (let i = 1; i < 101; i++) {
+        if (i == 7) {
+            $('#number-button-container').append(`<button class="bg-warning number-button">${i}</button>`);
+        } else if (i == 4) {
+            $('#number-button-container').append(`<button class="bg-danger number-button">${i}</button>`);
+        } else if (i == 88) {
+            $('#number-button-container').append(`<button class="bg-success number-button">${i}</button>`);
+        } else if (i == 29) {
+            $('#number-button-container').append(`<button class="bg-info number-button">${i}</button>`);
+        } else if (i == 72) {
+            $('#number-button-container').append(`<button class="number-button" onclick="startLastPuzzle()">${i}</button>`);
+        } else {
+            $('#number-button-container').append(`<button class="number-button">${i}</button>`);
+        }
+
+    }
 };
+
+function colorLetters(word) {
+    var wordArray = word.split('');
+    var newArray = [];
+
+    for (let i = 0; i < wordArray.length; i++) {
+        let randomNumber = Math.floor(Math.random() * 3);
+        let colouredLetter = wordArray[i];
+
+        if (randomNumber == 0) {
+            colouredLetter = '<span class="red">'.concat(colouredLetter, '</span>');
+        } else if (randomNumber == 1) {
+            colouredLetter = '<span class="blue">'.concat(colouredLetter, '</span>');
+        } else if (randomNumber == 2) {
+            colouredLetter = '<span class="green">'.concat(colouredLetter, '</span>');
+        }
+        newArray.push(colouredLetter);
+    };
+    return newArray.join('');
+};
+
+function changeInstructionsBackground(colour) {
+    $('#instructions-list').css('background-color', colour);
+}
+
+var moveableElement;
+var moveableStyle;
+let move = true;
+
+// The last puzzle
+function startLastPuzzle() {
+    $('#puzzle-container').html("<p id='temp-message'>Well I hope you enjoyed that as much as I enjoyed coding it...</p>");
+    setTimeout(function() {
+        $('#temp-message').remove();
+    }, 2500);
+    $('#puzzle-container').html(`
+        <div id="moveable">
+            <p>Find the Mising Letter.</p>
+        </div>
+        <div>
+            <button>H</button>
+            <button>A</button>
+            <button>P</button>
+            <button>P</button>
+            <button>Y</button>
+            <button>S</button>
+            <button>B</button>
+            <button>I</button>
+            <button>R</button>
+            <button>T</button>
+            <button>H</button>
+            <button>D</button>
+            <button>A</button>
+            <button>Y</button>
+        </div>
+    `);
+
+    moveableElement = document.getElementById('moveable');
+    moveableStyle = getComputedStyle(moveableElement);
+
+    moveableElement.addEventListener('touchstart', function() {
+        move = true;
+    });
+}
+
+window.addEventListener('touchmove', function(e) {
+    if (move) {
+        var mouseLeft = e.touches[0].clientX;
+        var mouseTop = e.touches[0].clientY;
+        var elementWidth = moveableStyle.width.slice(0, -2) / 2;
+        var elementHeight = moveableStyle.height.slice(0, -2) / 2;
+        var newLeftPosition = mouseLeft - elementWidth;
+        var newTopPosition = mouseTop - elementHeight;
+
+        moveableElement.style.left = newLeftPosition.toString().concat('px');
+        moveableElement.style.top = newTopPosition.toString().concat('px');
+
+        console.log(mouseLeft);
+        console.log(mouseLeft);
+        console.log(e);
+    }
+});
+
+window.addEventListener('touchend', function() {
+    move = false;
+});
+
+startLastPuzzle();

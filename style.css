@@ -1,92 +1,143 @@
-    body {
-        padding: 10px;
-    }
-    
-    #welcome-message {
-        width: 100vw;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: fixed;
-        z-index: 50;
-        background-color: white;
-    }
-    
-    #welcome-message p {
-        text-align: center;
-    }
-    
-    #welcome-close {
-        position: fixed;
-        top: 0;
-        right: 0;
-    }
-    
-    #puzzle-container {
-        width: 100vw;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    
-    #first-button {
-        border: solid black 1px;
-        border-radius: 10px;
-        font-size: 30px;
-        font-weight: 700;
-        padding: 5px 15px;
-        color: black;
-        background-color: white;
-    }
-    
-    #boo {
-        font-size: 115px;
-        transform: rotateZ(-18deg);
-        font-weight: 700;
-        user-select: none;
-    }
-    
-    #second-puzzle-question {
-        font-size: 1.2em;
-        font-weight: 500;
-    }
-    
-    #green {
-        background-color: red;
-    }
-    
-    #lapis {
-        background-color: rgb(59, 180, 59);
-    }
-    
-    #blue {
-        background-color: rgb(189, 95, 95);
-    }
-    
-    #navy {
-        background-color: rgb(248, 78, 240);
-    }
-    
-    #slate {
-        background-color: rgb(67, 250, 235);
-    }
-    
-    #azure {
-        background-color: rgb(78, 157, 248);
-    }
-    
-    #artic {
-        background-color: rgb(223, 221, 99);
-    }
-    
-    #fuck-knows {
-        background-color: rgb(0, 0, 0);
-        color: white;
-    }
-    
-    button {
-        border-radius: 4px;
-        padding: 2px 5px;
-    }
+body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#welcome-message {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 50;
+    background-color: white;
+    box-sizing: border-box;
+}
+
+#welcome-message p {
+    text-align: center;
+}
+
+#welcome-close {
+    position: fixed;
+    top: 0;
+    right: 0;
+}
+
+#puzzle-container {
+    padding: 10px;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#first-button {
+    border: solid black 1px;
+    border-radius: 10px;
+    font-size: 30px;
+    font-weight: 700;
+    padding: 5px 15px;
+    color: black;
+    background-color: white;
+}
+
+#boo {
+    font-size: 115px;
+    transform: rotateZ(-18deg);
+    font-weight: 700;
+    user-select: none;
+}
+
+#second-puzzle-question {
+    font-size: 1.2em;
+    font-weight: 500;
+}
+
+#green {
+    background-color: red;
+}
+
+#lapis {
+    background-color: rgb(59, 180, 59);
+}
+
+#blue {
+    background-color: rgb(189, 95, 95);
+}
+
+#navy {
+    background-color: rgb(248, 78, 240);
+}
+
+#slate {
+    background-color: rgb(67, 250, 235);
+}
+
+#azure {
+    background-color: rgb(78, 157, 248);
+}
+
+#artic {
+    background-color: rgb(223, 221, 99);
+}
+
+#fuck-knows {
+    background-color: rgb(0, 0, 0);
+    color: white;
+}
+
+button {
+    border-radius: 4px;
+    padding: 2px 5px;
+}
+
+#instructions-list {
+    background-color: red;
+    padding: 20px 50px;
+    font-size: 1em;
+    font-weight: 700;
+}
+
+.red {
+    color: red;
+}
+
+.blue {
+    color: blue;
+}
+
+.green {
+    color: green;
+}
+
+.number-button {
+    width: 10%;
+    height: 30px;
+}
+
+#moveable {
+    width: 80vw;
+    height: 100px;
+    border: solid grey 1px;
+    border-radius: 3px;
+    position: absolute;
+    top: 100px;
+    left: 40px;
+    user-select: none;
+    box-shadow: 2px 2px 8px 3px rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#moveable:hover {
+    cursor: move;
+}
+
+#moveable p {
+    font-size: 2em;
+}
