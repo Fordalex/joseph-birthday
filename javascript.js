@@ -6,9 +6,25 @@ function restart() {
     }, 1500)
 }
 
+$(document).on('click', '#welcome-close', function() {
+    $('#welcome-message').remove();
+    sessionStorage.setItem('welcomeMessageRead', 'read');
+})
+
+var welcomeMessage = sessionStorage.getItem('welcomeMessageRead');
+
+if (welcomeMessage != 'read') {
+    $('#puzzle-container').append(`
+    <div id="welcome-message">
+        <img src="https://img.icons8.com/emoji/48/000000/cross-mark-emoji.png" id="welcome-close" />
+        <p>Forget about the past, you can't change it. <br>Forget about the future, you can't predict it. <br> Forget about the present, I didn't get you one.<br><br>Welcome to your birthday puzzle!</p>
+    </div>
+    `)
+}
+
 // first
 
-var firstButton = 9;
+var firstButton = 30;
 
 $('#first-button').on('click', function() {
     firstButton--;
@@ -44,7 +60,7 @@ function removeBoo() {
     setTimeout(function() {
         $('#boo').remove();
         startSecondPuzzle();
-    }, 750)
+    }, 1000)
 
 };
 
@@ -88,11 +104,11 @@ $(document).on('click', '.wrong-button', function() {
 
 $(document).on('click', '#navy', function() {
     $('#puzzle-container').append(`
-        <p id="well-done">Well done.</p>
+        <p id="well-done">Your Smarter Than you look.</p>
     `);
     setTimeout(function() {
         startThirdPuzzle();
-    }, 1000)
+    }, 2500)
 })
 
 // Third puzzle

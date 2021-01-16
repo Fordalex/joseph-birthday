@@ -2,6 +2,27 @@
         padding: 10px;
     }
     
+    #welcome-message {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        z-index: 50;
+        background-color: white;
+    }
+    
+    #welcome-message p {
+        text-align: center;
+    }
+    
+    #welcome-close {
+        position: fixed;
+        top: 0;
+        right: 0;
+    }
+    
     #puzzle-container {
         width: 100vw;
         height: 100vh;
@@ -24,6 +45,7 @@
         font-size: 115px;
         transform: rotateZ(-18deg);
         font-weight: 700;
+        user-select: none;
     }
     
     #second-puzzle-question {
