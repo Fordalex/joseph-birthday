@@ -1,17 +1,70 @@
-#puzzle-container {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#first-button {
-    border: solid black 1px;
-    border-radius: 10px;
-    font-size: 30px;
-    font-weight: 700;
-    padding: 5px 15px;
-    color: black;
-    background-color: white;
-}
+    body {
+        padding: 10px;
+    }
+    
+    #puzzle-container {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    #first-button {
+        border: solid black 1px;
+        border-radius: 10px;
+        font-size: 30px;
+        font-weight: 700;
+        padding: 5px 15px;
+        color: black;
+        background-color: white;
+    }
+    
+    #boo {
+        font-size: 115px;
+        transform: rotateZ(-18deg);
+        font-weight: 700;
+    }
+    
+    #second-puzzle-question {
+        font-size: 1.2em;
+        font-weight: 500;
+    }
+    
+    #green {
+        background-color: red;
+    }
+    
+    #lapis {
+        background-color: rgb(59, 180, 59);
+    }
+    
+    #blue {
+        background-color: rgb(189, 95, 95);
+    }
+    
+    #navy {
+        background-color: rgb(248, 78, 240);
+    }
+    
+    #slate {
+        background-color: rgb(67, 250, 235);
+    }
+    
+    #azure {
+        background-color: rgb(78, 157, 248);
+    }
+    
+    #artic {
+        background-color: rgb(223, 221, 99);
+    }
+    
+    #fuck-knows {
+        background-color: rgb(0, 0, 0);
+        color: white;
+    }
+    
+    button {
+        border-radius: 4px;
+        padding: 2px 5px;
+    }
