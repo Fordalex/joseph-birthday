@@ -1,0 +1,17 @@
+#puzzle-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#first-button {
+    border: solid black 1px;
+    border-radius: 10px;
+    font-size: 30px;
+    font-weight: 700;
+    padding: 5px 15px;
+    color: black;
+    background-color: white;
+}
