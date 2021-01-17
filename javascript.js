@@ -20,13 +20,13 @@ $(document).on('click', '.wrong-button', function() {
          `);
     } else if (usersAttempts < 3) {
         $('#puzzle-container').append(`
-            <p class="white-container">Your time being spent well.</p>
+            <p class="white-container">Try again. Your time being spent well.</p>
          `);
     } else if (usersAttempts < 4) {
         $('#puzzle-container').append(`
             <p class="white-container">Nope, Again, Never give up.</p>
          `);
-    } else if (usersAttempts < 6) {
+    } else if (usersAttempts < 8) {
         $('#puzzle-container').append(`
             <p class="white-container">No. Again...<p>
          `);
@@ -62,17 +62,17 @@ $(document).on('click', '#welcome-close', function() {
 
 // first
 
-var firstButton = 40;
+var firstButton = 9;
 
 $('#first-button').on('click', function() {
-    firstButton--;
-    if (firstButton == 29) {
+    firstButton -= 0.5;
+    if (firstButton == 22) {
         $('#first-button').css('background-color', 'red');
         $('#first-button').css('color', 'navy');
-    } else if (firstButton == 22) {
+    } else if (firstButton == 12) {
         $('#first-button').css('background-color', 'blue');
         $('#first-button').css('color', 'red');
-    } else if (firstButton == 32) {
+    } else if (firstButton == 18) {
         $('#first-button').css('background-color', 'green');
         $('#first-button').css('color', 'orange');
     } else if (firstButton == 8) {
@@ -103,15 +103,17 @@ function removeBoo() {
 };
 
 function startSecondPuzzle() {
-    $('#puzzle-container').append(`
+    let randomNumber = Math.floor(Math.random() * 3);
+    if (randomNumber == 0) {
+        $('#puzzle-container').append(`
         <div id="second-puzzle-container">
-            <p id="second-puzzle-question" class="white-container">What was the colour of the number 29</p>
+            <p id="second-puzzle-question" class="white-container">What was the colour of the number 22</p>
             <div>
                 <button class="wrong-button" id="lapis" onclick="secondButtonPressed()">Lapis</button>
                 <button class="wrong-button" id="blue" onclick="secondButtonPressed()">Blue</button>
-                <button id="navy" onclick="secondButtonPressed()">Navy</button>
+                <button id="navy" onclick="firstPuzzleCompleted()">Navy</button>
                 <button class="wrong-button" id="slate" onclick="secondButtonPressed()">Slate</button>
-                <button class="wrong-button" id="green" onclick="secondButtonPressed()">Green</button>
+                <button class="wrong-button" id="green" onclick="secondButtonPressed()">Orange</button>
                 <button class="wrong-button" id="azure" onclick="secondButtonPressed()">Azure</button>
                 <button class="wrong-button" id="arctic" onclick="secondButtonPressed()">Arctic</button>
             </div>
@@ -120,6 +122,44 @@ function startSecondPuzzle() {
             </div>
         </div>
     `);
+    } else if (randomNumber == 1) {
+        $('#puzzle-container').append(`
+        <div id="second-puzzle-container">
+            <p id="second-puzzle-question" class="white-container">What was the colour of the number 18</p>
+            <div>
+                <button class="wrong-button" id="lapis" onclick="secondButtonPressed()">Lapis</button>
+                <button class="wrong-button" id="blue" onclick="secondButtonPressed()">Blue</button>
+                <button class="wrong-button" id="navy" onclick="secondButtonPressed()">Navy</button>
+                <button class="wrong-button" id="slate" onclick="secondButtonPressed()">Slate</button>
+                <button id="green" onclick="firstPuzzleCompleted()">Orange</button>
+                <button class="wrong-button" id="azure" onclick="secondButtonPressed()">Azure</button>
+                <button class="wrong-button" id="arctic" onclick="secondButtonPressed()">Arctic</button>
+            </div>
+            <div class="d-flex justify-content-center mt-3">
+                <button id="fuck-knows" onclick="secondButtonPressed()">Fuck Knows</button>
+            </div>
+        </div>
+    `);
+    } else if (randomNumber == 2) {
+        $('#puzzle-container').append(`
+        <div id="second-puzzle-container">
+            <p id="second-puzzle-question" class="white-container">What was the background colour of the number 12</p>
+            <div>
+                <button class="wrong-button" id="lapis" onclick="secondButtonPressed()">Lapis</button>
+                <button id="blue" onclick="firstPuzzleCompleted()">Blue</button>
+                <button class="wrong-button" id="navy" onclick="secondButtonPressed()">Navy</button>
+                <button class="wrong-button" id="slate" onclick="secondButtonPressed()">Slate</button>
+                <button class="wrong-button" id="green" onclick="secondButtonPressed()">Orange</button>
+                <button class="wrong-button" id="azure" onclick="secondButtonPressed()">Azure</button>
+                <button class="wrong-button" id="arctic" onclick="secondButtonPressed()">Arctic</button>
+            </div>
+            <div class="d-flex justify-content-center mt-3">
+                <button id="fuck-knows" onclick="secondButtonPressed()">Fuck Knows</button>
+            </div>
+        </div>
+    `);
+    }
+
 };
 
 function secondButtonPressed() {
@@ -133,7 +173,8 @@ $(document).on('click', '#fuck-knows', function() {
     restart();
 });
 
-$(document).on('click', '#navy', function() {
+function firstPuzzleCompleted() {
+    $('#second-puzzle-container').remove();
     if (usersAttempts < 1) {
         $('#puzzle-container').append(`
             <p class="white-container" id="well-done">WOW! Well done.</p>
@@ -144,11 +185,11 @@ $(document).on('click', '#navy', function() {
         `);
     } else if (usersAttempts > 6 && usersAttempts < 10) {
         $('#puzzle-container').append(`
-            <p class="white-container" id="well-done">You still doing this?</p>
+            <p class="white-container" id="well-done">Yes! You still doing this?</p>
         `);
     } else {
         $('#puzzle-container').append(`
-        <p  class="white-container" id="well-done">Slow and steady.</p>
+        <p  class="white-container" id="well-done">Yes! Slow and steady.</p>
         `);
     }
 
@@ -156,7 +197,8 @@ $(document).on('click', '#navy', function() {
         $('#well-done').remove();
         startThirdPuzzle();
     }, 2500)
-})
+}
+
 
 // Third puzzle
 function startThirdPuzzle() {
@@ -195,7 +237,7 @@ function startThirdPuzzle() {
         } else if (i == 29) {
             $('#number-button-container').append(`<button class="bg-info wrong-button number-button">${i}</button>`);
         } else if (i == 72) {
-            $('#number-button-container').append(`<button class="number-button" onclick="startLastPuzzle()">${i}</button>`);
+            $('#number-button-container').append(`<button class="number-button" onclick="startBonusPuzzle()">${i}</button>`);
         } else {
             $('#number-button-container').append(`<button class="number-button wrong-button">${i}</button>`);
         }
@@ -227,13 +269,131 @@ function changeInstructionsBackground(colour) {
     $('#instructions-list').css('background-color', colour);
 }
 
+// bonus level
+startBonusPuzzle();
+
+function startBonusPuzzle() {
+    $('#puzzle-container').html('');
+    $('#puzzle-container').append('<p class="white-container">Well done.</p>');
+
+    setTimeout(function() {
+        $('#puzzle-container').html('');
+        appendBonusPuzzle();
+    }, 1000)
+
+}
+
+let bonusGameRandom = Math.floor(Math.random() * 3);
+let ambulance = Math.floor(Math.random() * 4) + 1;
+let police = Math.floor(Math.random() * 4) + 1;
+let fireTruck = Math.floor(Math.random() * 4) + 1;
+
+console.log(ambulance, fireTruck, police, bonusGameRandom)
+
+function appendBonusPuzzle() {
+    if (bonusGameRandom == 0) {
+        var question = "How many amulances did you see?";
+    } else if (bonusGameRandom == 1) {
+        var question = "How many fire trucks did you see?";
+    } else {
+        var question = "How many police cars did you see?";
+    }
+
+    $('#puzzle-container').append(`
+        <div id="road-game-container">
+            <img src="img/road.jpg" id="road" style="width: 100vw;" class="mb-4">
+            <div id="road-question-container">
+                <p>
+                ${question}
+                </p>
+                <input type="number" id="car-answer" class="form-control">
+                <button class="btn btn-success container-fluid mt-3" onclick="bonusPuzzleAnswer()">Answer</button
+            </div>
+            
+        </div>
+    `);
+
+    for (let i = 0; i < ambulance; i++) {
+        $('#puzzle-container').append(`<img src="img/amulance.png" class="amulance" id="amulance-${i}" style="right:-${(300 * (i + 2)) - 300}px;">`);
+    }
+
+    for (let i = 0; i < fireTruck; i++) {
+        $('#puzzle-container').append(`<img src="img/fire-truck.png" class="fire-truck" id="fire-truck-${i}" style="right:-${(300 * (i + 2))- 150}px;">`);
+    }
+
+    for (let i = 0; i < police; i++) {
+        $('#puzzle-container').append(`<img src="img/police-car.png" class="police-car" id="police-${i}" style="left:-${(300 * (i + 2))- 300}px;">`);
+    }
+
+    moveVehicles();
+
+    setTimeout(function() {
+        $('#road-question-container').css('display', 'block');
+    }, 8000)
+}
+
+function moveVehicles() {
+
+    for (let i = 0; i < ambulance; i++) {
+        let currentPos = $(`#amulance-${i}`).css('right');
+        let newPos = parseInt(currentPos.slice(0, -2)) + 1;
+        $(`#amulance-${i}`).css('right', newPos.toString().concat('px'));
+    }
+
+    for (let i = 0; i < fireTruck; i++) {
+        let currentPos = $(`#fire-truck-${i}`).css('right');
+        let newPos = parseInt(currentPos.slice(0, -2)) + 1;
+        $(`#fire-truck-${i}`).css('right', newPos.toString().concat('px'));
+    }
+
+    for (let i = 0; i < police; i++) {
+        let currentPos = $(`#police-${i}`).css('left');
+        let newPos = parseInt(currentPos.slice(0, -2)) + 1;
+        $(`#police-${i}`).css('left', newPos.toString().concat('px'));
+    }
+
+
+    setTimeout(function() {
+        moveVehicles();
+    }, 5)
+}
+
+function bonusPuzzleAnswer() {
+    let answer = parseInt($('#car-answer').val());
+    console.log(answer)
+
+    if (bonusGameRandom == 0) {
+        // var question = "How many amulances did you see?";
+        if (answer == ambulance) {
+            startLastPuzzle()
+        } else {
+            restart();
+        }
+    } else if (bonusGameRandom == 1) {
+        // var question = "How many fire trucks did you see?";
+        if (answer == fireTruck) {
+            startLastPuzzle()
+        } else {
+            restart();
+        }
+    } else {
+        // var question = "How many police cars did you see?";
+        if (answer == police) {
+            startLastPuzzle()
+        } else {
+            restart();
+        }
+    }
+}
+
+
+// The last puzzle
 var moveableElement;
 var moveableStyle;
 let move = true;
 
-// The last puzzle
 function startLastPuzzle() {
-    $('#puzzle-container').html("<p id='temp-message' class='white-container'>Saved the best for last.</p>");
+    $('#puzzle-container').html("<p id='temp-message' class='white-container'>Correct! Saved the best for last.</p>");
     setTimeout(function() {
         $('#temp-message').remove();
         appendLastPuzzle();
