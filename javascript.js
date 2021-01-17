@@ -283,9 +283,9 @@ function startBonusPuzzle() {
 }
 
 let bonusGameRandom = Math.floor(Math.random() * 3);
-let ambulance = Math.floor(Math.random() * 4) + 1;
-let police = Math.floor(Math.random() * 4) + 1;
-let fireTruck = Math.floor(Math.random() * 4) + 1;
+let ambulance = Math.floor(Math.random() * 5) + 1;
+let police = Math.floor(Math.random() * 5) + 1;
+let fireTruck = Math.floor(Math.random() * 5) + 1;
 
 console.log(ambulance, fireTruck, police, bonusGameRandom)
 
@@ -328,7 +328,7 @@ function appendBonusPuzzle() {
 
     setTimeout(function() {
         $('#road-question-container').css('display', 'block');
-    }, 8000)
+    }, 10000)
 }
 
 function moveVehicles() {
