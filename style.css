@@ -1,10 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Roboto+Mono:wght@300&display=swap');
+p,
+a,
+li {
+    font-family: 'Roboto Mono', monospace;
+    letter-spacing: -1px;
+}
+
+h6,
+h5,
+h4,
+h3,
+h2,
+h1 {
+    font-family: 'Lobster', cursive;
+}
+
 body {
     width: 100vw;
     height: 100vh;
     background: url("img/background.jpg") center center;
     background-size: cover;
     overflow-x: hidden;
-    overflow-y: hidden;
+    overflow-y: auto;
 }
 
 .white-container {
@@ -66,6 +83,7 @@ body {
     transform: rotateZ(-18deg);
     font-weight: 700;
     user-select: none;
+    font-family: 'Lobster', cursive;
 }
 
 #second-puzzle-question {

@@ -14,9 +14,9 @@ function restart() {
 
 $(document).on('click', '.wrong-button', function() {
     $('#puzzle-container').html('');
-    if (usersAttempts < 0) {
+    if (usersAttempts < 2) {
         $('#puzzle-container').append(`
-            <p class="white-container">First incorrect answer. Try again.</p>
+            <p class="white-container">No. Trying again.</p>
          `);
     } else if (usersAttempts < 3) {
         $('#puzzle-container').append(`
@@ -138,13 +138,11 @@ $(document).on('click', '#navy', function() {
         $('#puzzle-container').append(`
             <p class="white-container" id="well-done">WOW! Well done.</p>
         `);
-    }
-    if (usersAttempts < 3) {
+    } else if (usersAttempts < 3) {
         $('#puzzle-container').append(`
             <p class="white-container" id="well-done">Your Smarter Than you look.</p>
         `);
-    }
-    if (usersAttempts > 6 && usersAttempts < 10) {
+    } else if (usersAttempts > 6 && usersAttempts < 10) {
         $('#puzzle-container').append(`
             <p class="white-container" id="well-done">You still doing this?</p>
         `);
@@ -165,7 +163,7 @@ function startThirdPuzzle() {
     $('#puzzle-container').append(`
         <div>
             <div>
-                <p class="white-container">Change the background colour to view the instructions, select the correct button to continue.</p>
+                <p class="white-container" style="margin-top:70px;">Change the background colour to view the instructions, select the correct button to continue.</p>
                 <ol id="instructions-list">
                     <li>${colorLetters("Your number isn't 122 but it's half that")}</li>
                     <li>${colorLetters("Add 9 to your number")}</li>
@@ -182,7 +180,7 @@ function startThirdPuzzle() {
                 <button onclick="changeInstructionsBackground('green')">Green</button>
             </div>
             <hr>
-            <div id="number-button-container">
+            <div id="number-button-container" style="margin-bottom:10px;">
 
             </div>
         </div>
@@ -235,7 +233,7 @@ let move = true;
 
 // The last puzzle
 function startLastPuzzle() {
-    $('#puzzle-container').html("<p id='temp-message' class='white-container'>Your number was 45.</p>");
+    $('#puzzle-container').html("<p id='temp-message' class='white-container'>Saved the best for last.</p>");
     setTimeout(function() {
         $('#temp-message').remove();
         appendLastPuzzle();
@@ -248,7 +246,7 @@ function appendLastPuzzle() {
             <img src="https://img.icons8.com/cotton/64/000000/secured-letter.png" id="letter-icon" onclick="finsihedPuzzle"/>
         </a>
         <div id="moveable">
-            <p>Find the Mising Letter.</p>
+            <h2>Find the Mising Letter.</h2>
         </div>
         <div id="missing-button-container">
             <button class="miss-button">H</button>
