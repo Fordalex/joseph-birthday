@@ -7,6 +7,14 @@ function restart() {
     }, 1500)
 }
 
+$(document).on('click', '.wrong-button', function() {
+    $('#puzzle-container').html('');
+    $('#puzzle-container').append(`
+        <p>Close... Try again.</p>
+    `);
+    restart();
+});
+
 var welcomeMessage = sessionStorage.getItem('welcomeMessageRead');
 var usersAttempts = sessionStorage.getItem('attempts');
 
@@ -26,12 +34,12 @@ $(document).on('click', '#welcome-close', function() {
 
 // first
 
-var firstButton = 9;
+var firstButton = 40;
 
 $('#first-button').on('click', function() {
     firstButton--;
     if (firstButton == 29) {
-        $('#first-button').css('background-color', 'blue');
+        $('#first-button').css('background-color', 'red');
         $('#first-button').css('color', 'navy');
     } else if (firstButton == 22) {
         $('#first-button').css('background-color', 'blue');
@@ -97,13 +105,6 @@ $(document).on('click', '#fuck-knows', function() {
     restart();
 });
 
-$(document).on('click', '.wrong-button', function() {
-    $('#puzzle-container').append(`
-        <p>Close... Try again.</p>
-    `);
-    restart();
-});
-
 $(document).on('click', '#navy', function() {
     $('#puzzle-container').append(`
         <p id="well-done">Your Smarter Than you look.</p>
@@ -143,17 +144,17 @@ function startThirdPuzzle() {
     `);
     for (let i = 1; i < 101; i++) {
         if (i == 7) {
-            $('#number-button-container').append(`<button class="bg-warning number-button">${i}</button>`);
+            $('#number-button-container').append(`<button class="bg-warning wrong-button number-button">${i}</button>`);
         } else if (i == 4) {
-            $('#number-button-container').append(`<button class="bg-danger number-button">${i}</button>`);
+            $('#number-button-container').append(`<button class="bg-danger wrong-button number-button">${i}</button>`);
         } else if (i == 88) {
-            $('#number-button-container').append(`<button class="bg-success number-button">${i}</button>`);
+            $('#number-button-container').append(`<button class="bg-success wrong-button number-button">${i}</button>`);
         } else if (i == 29) {
-            $('#number-button-container').append(`<button class="bg-info number-button">${i}</button>`);
+            $('#number-button-container').append(`<button class="bg-info wrong-button number-button">${i}</button>`);
         } else if (i == 72) {
             $('#number-button-container').append(`<button class="number-button" onclick="startLastPuzzle()">${i}</button>`);
         } else {
-            $('#number-button-container').append(`<button class="number-button">${i}</button>`);
+            $('#number-button-container').append(`<button class="number-button wrong-button">${i}</button>`);
         }
 
     }
@@ -192,26 +193,33 @@ function startLastPuzzle() {
     $('#puzzle-container').html("<p id='temp-message'>Well I hope you enjoyed that as much as I enjoyed coding it...</p>");
     setTimeout(function() {
         $('#temp-message').remove();
+        appendLastPuzzle();
     }, 2500);
+}
+
+function appendLastPuzzle() {
     $('#puzzle-container').html(`
+        <a href="birthdayMessage.html">
+            <img src="https://img.icons8.com/cotton/64/000000/secured-letter.png" id="letter-icon" onclick="finsihedPuzzle"/>
+        </a>
         <div id="moveable">
             <p>Find the Mising Letter.</p>
         </div>
         <div>
-            <button>H</button>
-            <button>A</button>
-            <button>P</button>
-            <button>P</button>
-            <button>Y</button>
-            <button>S</button>
-            <button>B</button>
-            <button>I</button>
-            <button>R</button>
-            <button>T</button>
-            <button>H</button>
-            <button>D</button>
-            <button>A</button>
-            <button>Y</button>
+            <button class="miss-button">H</button>
+            <button class="miss-button">A</button>
+            <button class="miss-button">P</button>
+            <button class="miss-button">P</button>
+            <button class="miss-button">Y</button>
+            <button class="miss-button">S</button>
+            <button class="miss-button">B</button>
+            <button class="miss-button">I</button>
+            <button class="miss-button">R</button>
+            <button class="miss-button">T</button>
+            <button class="miss-button">H</button>
+            <button class="miss-button">D</button>
+            <button class="miss-button">A</button>
+            <button class="miss-button">Y</button>
         </div>
     `);
 
@@ -244,5 +252,3 @@ window.addEventListener('touchmove', function(e) {
 window.addEventListener('touchend', function() {
     move = false;
 });
-
-startLastPuzzle();

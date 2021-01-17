@@ -119,6 +119,12 @@ button {
     height: 30px;
 }
 
+#letter-icon {
+    position: absolute;
+    top: 105px;
+    left: 50%;
+}
+
 #moveable {
     width: 80vw;
     height: 100px;
@@ -128,10 +134,11 @@ button {
     top: 100px;
     left: 40px;
     user-select: none;
-    box-shadow: 2px 2px 8px 3px rgba(0, 0, 0, 0.05);
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: white;
+    z-index: 100;
 }
 
 #moveable:hover {
