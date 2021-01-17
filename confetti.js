@@ -88,3 +88,7 @@ $(document).ready(function() {
     update();
     draw();
 });
+
+setTimeout(function() {
+    $('#confetti').remove();
+}, 9000)
