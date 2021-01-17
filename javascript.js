@@ -1,22 +1,50 @@
 // settings
 
 function restart() {
-
+    if (parseInt(usersAttempts) > 0) {
+        sessionStorage.setItem('attempts', parseInt(usersAttempts) + 1);
+    } else {
+        sessionStorage.setItem('attempts', 1);
+    }
     setTimeout(function() {
         location.reload();
     }, 1500)
+
 }
 
 $(document).on('click', '.wrong-button', function() {
     $('#puzzle-container').html('');
-    $('#puzzle-container').append(`
-        <p>Close... Try again.</p>
-    `);
+    if (usersAttempts < 0) {
+        $('#puzzle-container').append(`
+            <p class="white-container">First incorrect answer. Try again.</p>
+         `);
+    } else if (usersAttempts < 3) {
+        $('#puzzle-container').append(`
+            <p class="white-container">Your time being spent well.</p>
+         `);
+    } else if (usersAttempts < 4) {
+        $('#puzzle-container').append(`
+            <p class="white-container">Nope, Again, Never give up.</p>
+         `);
+    } else if (usersAttempts < 6) {
+        $('#puzzle-container').append(`
+            <p class="white-container">No. Again...<p>
+         `);
+    } else {
+        $('#puzzle-container').append(`
+            <p class="white-container">I clearly made this too hard.</p>
+         `);
+    }
+
     restart();
 });
 
 var welcomeMessage = sessionStorage.getItem('welcomeMessageRead');
-var usersAttempts = sessionStorage.getItem('attempts');
+if (sessionStorage.getItem('attempts')) {
+    var usersAttempts = sessionStorage.getItem('attempts');
+} else {
+    var usersAttempts = 0;
+}
 
 if (welcomeMessage != 'read') {
     $('#puzzle-container').append(`
@@ -77,7 +105,7 @@ function removeBoo() {
 function startSecondPuzzle() {
     $('#puzzle-container').append(`
         <div id="second-puzzle-container">
-            <p id="second-puzzle-question">What was the colour of the number 29</p>
+            <p id="second-puzzle-question" class="white-container">What was the colour of the number 29</p>
             <div>
                 <button class="wrong-button" id="lapis" onclick="secondButtonPressed()">Lapis</button>
                 <button class="wrong-button" id="blue" onclick="secondButtonPressed()">Blue</button>
@@ -100,15 +128,32 @@ function secondButtonPressed() {
 
 $(document).on('click', '#fuck-knows', function() {
     $('#puzzle-container').append(`
-        <p>Thats not the attitude... Try again.</p>
+        <p class="white-container">Thats not the attitude... Try again.</p>
     `);
     restart();
 });
 
 $(document).on('click', '#navy', function() {
-    $('#puzzle-container').append(`
-        <p id="well-done">Your Smarter Than you look.</p>
-    `);
+    if (usersAttempts < 1) {
+        $('#puzzle-container').append(`
+            <p class="white-container" id="well-done">WOW! Well done.</p>
+        `);
+    }
+    if (usersAttempts < 3) {
+        $('#puzzle-container').append(`
+            <p class="white-container" id="well-done">Your Smarter Than you look.</p>
+        `);
+    }
+    if (usersAttempts > 6 && usersAttempts < 10) {
+        $('#puzzle-container').append(`
+            <p class="white-container" id="well-done">You still doing this?</p>
+        `);
+    } else {
+        $('#puzzle-container').append(`
+        <p  class="white-container" id="well-done">Slow and steady.</p>
+        `);
+    }
+
     setTimeout(function() {
         $('#well-done').remove();
         startThirdPuzzle();
@@ -120,7 +165,7 @@ function startThirdPuzzle() {
     $('#puzzle-container').append(`
         <div>
             <div>
-                <p>Change the background colour to view the instructions, select the correct button to continue.</p>
+                <p class="white-container">Change the background colour to view the instructions, select the correct button to continue.</p>
                 <ol id="instructions-list">
                     <li>${colorLetters("Your number isn't 122 but it's half that")}</li>
                     <li>${colorLetters("Add 9 to your number")}</li>
@@ -130,7 +175,7 @@ function startThirdPuzzle() {
                 </ol>
             </div>
             <hr>
-            <h6 class="text-center">Change Background Colour</h6>
+            <h6 class="text-center white-container">Change Background Colour</h6>
             <div class="d-flex justify-content-center mb-3">
                 <button onclick="changeInstructionsBackground('red')">Red</button>
                 <button onclick="changeInstructionsBackground('blue')" class="mx-3">Blue</button>
@@ -190,7 +235,7 @@ let move = true;
 
 // The last puzzle
 function startLastPuzzle() {
-    $('#puzzle-container').html("<p id='temp-message'>Well I hope you enjoyed that as much as I enjoyed coding it...</p>");
+    $('#puzzle-container').html("<p id='temp-message' class='white-container'>Your number was 45.</p>");
     setTimeout(function() {
         $('#temp-message').remove();
         appendLastPuzzle();
@@ -205,7 +250,7 @@ function appendLastPuzzle() {
         <div id="moveable">
             <p>Find the Mising Letter.</p>
         </div>
-        <div>
+        <div id="missing-button-container">
             <button class="miss-button">H</button>
             <button class="miss-button">A</button>
             <button class="miss-button">P</button>
@@ -251,4 +296,9 @@ window.addEventListener('touchmove', function(e) {
 
 window.addEventListener('touchend', function() {
     move = false;
+});
+
+$(document).on('click', '.miss-button', function() {
+    $(this).html('<img src="https://img.icons8.com/fluent/25/000000/error.png"/>');
+    $(this).css('background-color', 'red');
 });

@@ -1,7 +1,23 @@
 body {
     width: 100vw;
     height: 100vh;
-    overflow: hidden;
+    background: url("img/background.jpg") center center;
+    background-size: cover;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.white-container {
+    background-color: white;
+    border-radius: 5px;
+    border: solid rgb(163, 163, 163) 1px;
+    padding: 2px 5px
+}
+
+#attempts {
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 #welcome-message {
@@ -38,7 +54,7 @@ body {
 #first-button {
     border: solid black 1px;
     border-radius: 10px;
-    font-size: 30px;
+    font-size: 7em;
     font-weight: 700;
     padding: 5px 15px;
     color: black;
@@ -121,7 +137,7 @@ button {
 
 #letter-icon {
     position: absolute;
-    top: 105px;
+    top: 40vh;
     left: 50%;
 }
 
@@ -131,7 +147,7 @@ button {
     border: solid grey 1px;
     border-radius: 3px;
     position: absolute;
-    top: 100px;
+    top: 40vh;
     left: 40px;
     user-select: none;
     display: flex;
@@ -147,4 +163,23 @@ button {
 
 #moveable p {
     font-size: 2em;
+}
+
+.miss-button {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+#missing-button-container {
+    margin-top: 50vh;
+    text-align: center;
+}
+
+button:focus {
+    outline: none;
 }
