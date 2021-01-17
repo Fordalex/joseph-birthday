@@ -62,7 +62,7 @@ $(document).on('click', '#welcome-close', function() {
 
 // first
 
-var firstButton = 9;
+var firstButton = 29;
 
 $('#first-button').on('click', function() {
     firstButton -= 0.5;
@@ -270,16 +270,15 @@ function changeInstructionsBackground(colour) {
 }
 
 // bonus level
-startBonusPuzzle();
 
 function startBonusPuzzle() {
     $('#puzzle-container').html('');
-    $('#puzzle-container').append('<p class="white-container">Well done.</p>');
+    $('#puzzle-container').append('<p class="white-container">Watch the road!</p>');
 
     setTimeout(function() {
         $('#puzzle-container').html('');
         appendBonusPuzzle();
-    }, 1000)
+    }, 2000)
 
 }
 
