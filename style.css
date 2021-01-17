@@ -151,6 +151,7 @@ button {
 .number-button {
     width: 10%;
     height: 30px;
+    margin: 0;
 }
 
 #letter-icon {
@@ -258,4 +259,8 @@ button {
 
 button:focus {
     outline: none;
+}
+
+button {
+    margin: 4px;
 }

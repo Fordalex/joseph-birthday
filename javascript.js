@@ -202,10 +202,11 @@ function firstPuzzleCompleted() {
 
 // Third puzzle
 function startThirdPuzzle() {
+    $('#puzzle-container').css('display', 'block')
     $('#puzzle-container').append(`
         <div>
             <div>
-                <p class="white-container" style="margin-top:70px;">Change the background colour to view the instructions, select the correct button to continue.</p>
+                <p class="white-container">Change the background colour to view the instructions, select the correct button to continue.</p>
                 <ol id="instructions-list">
                     <li>${colorLetters("Your number isn't 122 but it's half that")}</li>
                     <li>${colorLetters("Add 9 to your number")}</li>
@@ -222,7 +223,7 @@ function startThirdPuzzle() {
                 <button onclick="changeInstructionsBackground('green')">Green</button>
             </div>
             <hr>
-            <div id="number-button-container" style="margin-bottom:10px;">
+            <div id="number-button-container" style="padding-bottom:10px;">
 
             </div>
         </div>
@@ -272,6 +273,7 @@ function changeInstructionsBackground(colour) {
 // bonus level
 
 function startBonusPuzzle() {
+    $('#puzzle-container').css('display', 'flex');
     $('#puzzle-container').html('');
     $('#puzzle-container').append('<p class="white-container">Watch the road!</p>');
 
@@ -366,6 +368,8 @@ function bonusPuzzleAnswer() {
         if (answer == ambulance) {
             startLastPuzzle()
         } else {
+            $('#puzzle-container').html('');
+            $('#puzzle-container').append('<p class="white-container">Getting close. Start over!</p>');
             restart();
         }
     } else if (bonusGameRandom == 1) {
@@ -373,6 +377,8 @@ function bonusPuzzleAnswer() {
         if (answer == fireTruck) {
             startLastPuzzle()
         } else {
+            $('#puzzle-container').html('');
+            $('#puzzle-container').append('<p class="white-container">Getting close. Start over!</p>');
             restart();
         }
     } else {
@@ -380,6 +386,8 @@ function bonusPuzzleAnswer() {
         if (answer == police) {
             startLastPuzzle()
         } else {
+            $('#puzzle-container').html('');
+            $('#puzzle-container').append('<p class="white-container">Getting close. Start over!</p>');
             restart();
         }
     }
